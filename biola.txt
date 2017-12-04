@@ -1,5 +1,5 @@
-U = [ G C T A G ]
-V = [ A C T G a G A ]
+U = [ A C T T ]
+V = [ G T C T ]
 <A C T G -> <A C T G ->
 0 1 1 1 1
 1 0 1 1 1
