@@ -1,0 +1,8 @@
+U = [ A C G C ]
+V = [ T C G A ] # |V|%3 == 0
+<A C T G -> <A C T G -> #tutaj 21x21 aminokwasy + ostatnia wartosc '-'
+ 1  0  0  0 -1
+ 0  1  0  0 -1
+ 0  0  1  0 -1
+ 0  0  0  1 -1
+-1 -1 -1 -1  1
