@@ -11,11 +11,18 @@ def get_vector(file):
     return vec
 
 
-def get_matrix(file):
-    w, h = 5, 5
-    matrix = [[np.char for x in range(w)] for y in range(h)]
+def get_matrix(file, mode):
+    if mode == 1:
+        dim = 5
+    elif mode == 2:
+        dim = 21
+    else:
+        print("Invalid mode")
+        return
+
+    matrix = [[np.char for x in range(dim)] for y in range(dim)]
     file.readline()
-    for i in range(0, 5):
+    for i in range(0, dim):
         line = file.readline()
         matrix[i][:] = line.split()
 

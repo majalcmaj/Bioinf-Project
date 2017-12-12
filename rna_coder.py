@@ -13,17 +13,14 @@ CODONS_AMIN_MAP = {
     "TTA": "L", "TTG": "L", "CTT": "L", "CTC": "L", "CTA": "L", "CTG": "L",
     "ATG": "M",
     "AAT": "N", "AAC": "N",
-    # "TAG": "O",  # duplicate from "|" , add this to decode!
     "CCT": "P", "CCC": "P", "CCA": "P", "CCG": "P",
     "CAA": "Q", "CAG": "Q",
     "CGT": "R", "CGC": "R", "CGA": "R", "CGG": "R", "AGA": "R", "AGG": "R",
     "TCT": "S", "TCC": "S", "TCA": "S", "TCG": "S", "AGT": "S", "AGC": "S",
     "ACT": "T", "ACC": "T", "ACA": "T", "ACG": "T",
-    # "TGA": "U",  # duplicate from "|"
     "GTT": "V", "GTC": "V", "GTA": "V", "GTG": "V",
     "TGG": "W",
     "TAT": "Y", "TAC": "Y",
-    "TAA": "|", "TAG": "|", "TGA": "|",
     "---": "-"
 }
 
@@ -49,3 +46,5 @@ if __name__ == "__main__":
 
     print(rna_decode(example_aminos))
     print(len(example_aminos), len(rna_decode(example_aminos)))
+
+    print("dictionairy = " , len(AMIN_CODONS_MAP))

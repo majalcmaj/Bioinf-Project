@@ -1,30 +1,23 @@
 import numpy as np
 
 from bio_data_parser import get_matrix, get_vector
-
-ASCII_TO_IDX = {
-    'A': 0,
-    'C': 1,
-    'T': 2,
-    'G': 3
-}
+from dictionaries import dna_to_idx_vec, rna_to_idx_vec
 
 
-def vec_to_idx_vec(vec):
-    return [ASCII_TO_IDX[char] for char in vec]
+def calculate_editional_distance(u_sym, v_sym, weights):
+    matrix_dim = len(weights)
 
+    if matrix_dim == 5:  # USING DNA
+        u = dna_to_idx_vec(u_sym)
+        v = dna_to_idx_vec(v_sym)
+    elif matrix_dim == 21:  # USING RNA
+        u = rna_to_idx_vec(u_sym)
+        v = rna_to_idx_vec(v_sym)
+    else:
+        print("Matrix dimension is invalid!")
+        return
 
-SPACE_INDEX = 4
-if __name__ == "__main__":
-
-    file = open("data/editional_distance.data", 'r')
-    u_sym = get_vector(file)
-    v_sym = get_vector(file)
-    u = vec_to_idx_vec(u_sym)
-    v = vec_to_idx_vec(v_sym)
-
-    weights = get_matrix(file)
-
+    space_index = matrix_dim - 1
     h = len(u) + 1
     w = len(v) + 1
 
@@ -32,19 +25,19 @@ if __name__ == "__main__":
     transitions = np.zeros([w, h, 3], dtype=np.bool_)
 
     for x in range(1, w):
-        costs[x, 0] = costs[x - 1, 0] + weights[SPACE_INDEX, v[x - 1]]
+        costs[x, 0] = costs[x - 1, 0] + weights[space_index, v[x - 1]]
         transitions[0, x, 0] = True
 
     for y in range(1, h):
-        costs[0, y] = costs[0, y - 1] + weights[u[y - 1], SPACE_INDEX]
+        costs[0, y] = costs[0, y - 1] + weights[u[y - 1], space_index]
         transitions[y, 0, 2] = True
 
     for y in range(1, h):
         for x in range(1, w):
             trans_costs = np.array([
-                costs[x, y - 1] + weights[u[y - 1], SPACE_INDEX],  # left
+                costs[x, y - 1] + weights[u[y - 1], space_index],  # left
                 costs[x - 1, y - 1] + weights[u[y - 1], v[x - 1]],  # diag
-                costs[x - 1, y] + weights[SPACE_INDEX, v[x - 1]]  # top
+                costs[x - 1, y] + weights[space_index, v[x - 1]]  # top
             ], dtype=np.int32)
             min_trans = np.min(trans_costs)
 
