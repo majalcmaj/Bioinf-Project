@@ -1,7 +1,7 @@
 import numpy as np
 
-from bio_data_parser import get_matrix, get_vector
 from dictionaries import dna_to_idx_vec, rna_to_idx_vec
+from rna_coder import rna_code, rna_decode
 
 
 def calculate_local_match(u_sym, v_sym, weights):
@@ -11,8 +11,10 @@ def calculate_local_match(u_sym, v_sym, weights):
         u = dna_to_idx_vec(u_sym)
         v = dna_to_idx_vec(v_sym)
     elif matrix_dim == 21:  # USING RNA
-        u = rna_to_idx_vec(u_sym)
-        v = rna_to_idx_vec(v_sym)
+        u_amino = rna_code(u_sym)
+        v_amino = rna_code(v_sym)
+        u = rna_to_idx_vec(u_amino)
+        v = rna_to_idx_vec(v_amino)
     else:
         print("Matrix dimension is invalid!")
         return
@@ -67,5 +69,5 @@ def calculate_local_match(u_sym, v_sym, weights):
             u_star.append('-')
             v_star.append(v_sym[y])
 
-    print(" ".join(reversed(u_star)))
-    print(" ".join(reversed(v_star)))
+    print("".join(reversed(rna_decode(u_star))))
+    print("".join(reversed(rna_decode(v_star))))

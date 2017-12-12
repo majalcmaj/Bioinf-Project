@@ -1,5 +1,5 @@
-U = [ A C G C G C C T G A ]
-V = [ T C G A G G G T A A ] # |V|%3 == 0
+U = [ A C G C G C C T G ]
+V = [ T C G A G G G T A ] # |V|%3 == 0
 <A  C  D  E  F  G  H  I  K  L  M  N  P  Q  R  S  T  V  W  Y - > #tutaj 21x21 aminokwasy + ostatnia wartosc '-'
  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 -1
  0  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 -1

@@ -11,7 +11,7 @@ DEFAULT_FILENAMES = {
     13: "local_match.data",
     21: "similarity_rna.data",
     22: "similarity_rna.data",
-    23: "similarity_rna.data"  # bedziemy chcieli rozne pliki? Mikel mnie zabije za ten slownik XD
+    23: "similarity_rna.data"  # todo bedziemy chcieli rozne pliki? Mikel mnie zabije za ten slownik XD
 }
 
 if __name__ == "__main__":
