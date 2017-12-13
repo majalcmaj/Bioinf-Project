@@ -9,9 +9,9 @@ DEFAULT_FILENAMES = {
     11: "editional_distance.data",
     12: "similarity.data",
     13: "local_match.data",
-    21: "similarity_rna.data",
+    21: "editional_distance_rna.data",
     22: "similarity_rna.data",
-    23: "similarity_rna.data"  # todo bedziemy chcieli rozne pliki? Mikel mnie zabije za ten slownik XD
+    23: "similarity_rna.data"
 }
 
 if __name__ == "__main__":
@@ -21,8 +21,8 @@ if __name__ == "__main__":
         while mode != 1 and mode != 2:
             mode = int(input("-------------\n"
                              "Wybierz tryb:\n"
-                             "1. DNA\n"
-                             "2. RNA\n"))
+                             "1. Nukleotydy\n"
+                             "2. Trójki kodonowe\n"))
 
         task = 0
         while task != 1 and task != 2 and task != 3:
@@ -39,7 +39,7 @@ if __name__ == "__main__":
         weights = get_matrix(file, mode)
         print("Wczytano plik: " + file_name)
 
-        if task == 1:  # BIEDA SWITCH XDD
+        if task == 1:
             calculate_editional_distance(u_sym, v_sym, weights)
         if task == 2:
             calculate_similarity(u_sym, v_sym, weights)

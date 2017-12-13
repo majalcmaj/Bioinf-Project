@@ -6,15 +6,17 @@ from rna_coder import rna_code, rna_decode
 
 def calculate_similarity(u_sym, v_sym, weights):
     matrix_dim = len(weights)
+    as_codons = False
 
     if matrix_dim == 5:  # USING DNA
         u = dna_to_idx_vec(u_sym)
         v = dna_to_idx_vec(v_sym)
     elif matrix_dim == 21:  # USING RNA
-        u_amino = rna_code(u_sym)
-        v_amino = rna_code(v_sym)
-        u = rna_to_idx_vec(u_amino)
-        v = rna_to_idx_vec(v_amino)
+        as_codons = True
+        u_sym = rna_code(u_sym)
+        v_sym = rna_code(v_sym)
+        u = rna_to_idx_vec(u_sym)
+        v = rna_to_idx_vec(v_sym)
     else:
         print("Matrix dimension is invalid!")
         return
@@ -36,6 +38,8 @@ def calculate_similarity(u_sym, v_sym, weights):
 
     for y in range(1, h):
         for x in range(1, w):
+            if y == 3 and x == 3:
+                a = 1
             trans_costs = np.array([
                 costs[x, y - 1] + weights[u[y - 1], space_index],  # left
                 costs[x - 1, y - 1] + weights[u[y - 1], v[x - 1]],  # diag
@@ -51,6 +55,7 @@ def calculate_similarity(u_sym, v_sym, weights):
             costs[x, y] = max_trans
 
     print("Similarity: {}".format(costs[-1, -1]))
+    print(costs)
 
     u_star = []
     v_star = []
@@ -74,5 +79,9 @@ def calculate_similarity(u_sym, v_sym, weights):
             u_star.append('-')
             v_star.append(v_sym[y])
 
-    print("".join(reversed(rna_decode(u_star))))
-    print("".join(reversed(rna_decode(v_star))))
+    if as_codons:
+        print("".join(rna_decode(reversed(u_star))))
+        print("".join(rna_decode(reversed(v_star))))
+    else:
+        print("".join(reversed(u_star)))
+        print("".join(reversed(v_star)))
