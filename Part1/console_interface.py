@@ -7,7 +7,7 @@ from similarity import calculate_similarity
 
 DEFAULT_FILENAMES = {
     11: "editional_distance.data",
-    12: "similarity_loss.data",
+    12: "similarity.data",
     13: "local_match.data",
     21: "editional_distance_rna.data",
     22: "similarity_rna.data",

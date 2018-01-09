@@ -1,4 +1,4 @@
-U = [ A C G C ]
+U = [ A C A G A ]
 V = [ T C G A ]
 <A C T G -> <A C T G ->
  1  0  0  0 -1

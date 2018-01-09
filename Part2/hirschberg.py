@@ -66,7 +66,7 @@ if __name__ == "__main__":
         u_sym = get_vector(file)
         v_sym = get_vector(file)
 
-        weights = get_matrix(file)
+        weights = get_matrix(file, 5)
 
     hirschberg = Hirschberg(u_sym, v_sym, weights)
     print(hirschberg.run())

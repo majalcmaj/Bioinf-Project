@@ -11,8 +11,7 @@ def get_vector(file):
     return vec
 
 
-def get_matrix(file):
-    dim = 4
+def get_matrix(file, dim):
     matrix = [[np.char for x in range(dim)] for y in range(dim)]
     file.readline()
     for i in range(0, dim):
